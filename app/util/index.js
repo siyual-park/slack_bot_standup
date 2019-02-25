@@ -34,7 +34,7 @@ function addNewMessage(user, text) {
 async function doStandUp(do_standup) {
   if (!do_standup) {
     do_standup = true;
-    return;
+    return false;
   }
   const res = await web.channels.list()
 
@@ -42,7 +42,8 @@ async function doStandUp(do_standup) {
   const channel = res.channels.find(c => c.is_member);
 
   if (channel)
-    await web.chat.postMessage({ channel: channel.id, text: '좋은 아침이네요! standup 쓸 시간입니다.\n 한 일: <!everyone> 을 호출함.\n 할 일: <!everyone> 을 호출할 준비를 함.' })
+    await web.chat.postMessage({ channel: channel.id, text: '*좋은 아침이네요! standup을 쓸 시간입니다.*\n> 한 일: <!everyone> 을 호출함.\n> 할 일: <!everyone> 을 호출할 준비를 함.', mrkdwn: true })
+  return true;
 }
 
 module.exports = { addNewMessage, doStandUp };

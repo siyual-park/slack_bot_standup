@@ -25,6 +25,6 @@ rtm.on('message', async (message) => {
   if (!!res) do_standup = false;
 });
 
-schedule.scheduleJob('* * 8 * *', function(){
+schedule.scheduleJob('* 9 * * *', function () {
   doStandUp(do_standup);
 });
